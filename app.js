@@ -1,7 +1,7 @@
 {
-  "name": "my_module",
+  "name": "clscan",
   "description": "My test module",
-  "type": "pkcs11",
-  "path": "/path/to/libpkcs11testmodule.dylib",
-  "allowed_extensions": ["my-extension@mozilla.org"]
+  "type": "stdio",
+  "path": "C:\\clscan\\ejecutar.bat",
+  "allowed_extensions": ["ping_pong@mozilla.org"]
 }

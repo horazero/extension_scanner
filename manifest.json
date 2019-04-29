@@ -22,8 +22,7 @@
   },
   "applications": {
     "gecko": {
-      "id": "ping_pong@example.org",
-      "strict_min_version": "50.0"
+      "id": "ping_pong@mozilla.org"
     }
   },
   "background": {

@@ -5,19 +5,26 @@ function onError(error) {
 
 function sendMessageToTabs(tabs) {
   for (let tab of tabs) {
-    browser.tabs.sendMessage(
+    var examplePort = browser.tabs.connect(
       tab.id,
-      {greeting: "Hi from background script"}
-    ).then(response => {
-      console.log("Message from the content script:");
-      console.log(response.response);
-    }).catch(onError);
+      {name: "tabs-connect-example"}
+    );
+    examplePort.onMessage.addListener(function(m) {
+      console.log('received message from tab ' + tab.id + ':');
+      console.log(m);
+      if (m == 'iniciar'){
+          var port = browser.runtime.connectNative("clscan"); 
+          examplePort.postMessage('iniciado');
+       }
+    });
+    examplePort.postMessage('escanear');
+    //var port = browser.runtime.connectNative("clscan"); 
   }
 }
-
 browser.browserAction.onClicked.addListener(() => {
     browser.tabs.query({
         currentWindow: true,
         active: true
     }).then(sendMessageToTabs).catch(onError);
 });
+
